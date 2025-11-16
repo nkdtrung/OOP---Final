@@ -1,0 +1,23 @@
+TL01,Van Hoc
+TL02,Khoa Hoc
+TL03,Truyen Ngan
+TL04,Ky Nang
+TL05,Tu Dien
+TL06,Tu Thien
+TL07,Ky Nang Song
+TL08,Tham Khao
+TL09,Tuoi Tre
+TL10,Tam Ly
+TL11,Lap Trinh
+TL12,Toan
+TL13,Kinh Te
+TL14,Khoa Hoc Xa Hoi
+TL15,Lich Su
+TL16,Dia Ly
+TL17,Nghe Thuat
+TL18,Suc Khoe
+TL19,Thiet Ke
+TL20,Giao Duc
+TL21,Anime
+TL22,Sieu nhan
+Tong: 22

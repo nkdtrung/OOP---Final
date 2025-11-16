@@ -1,0 +1,10 @@
+KH001,Ho Nguyen,Quynh Nhu,Long An,0791234567,Nu
+KH002,Ngo Kieu,Dinh Trung,Tay Ninh,0799429767,Nam
+KH003,Duong,Hao Quang,Dong Nai,0123456789,Nam
+KH004,Nguyen,Duc Tuan,TPHCM,0912345678,Nam
+KH006,Nguyen,Kim Tien,Ha Noi,0937123456,Nu
+KH007,Tran,Tan Phat,TPHCM,0791234567,Nam
+KH008,Dao,Thien Phat,Ben Tre,0799123456,Nam
+KH009,Tran Dinh,Bao Quoc,Tay Ninh,0727853489,Nam
+KH010,Tia,Quang Minh,TPHCM,0123456789,Nam
+Tong: 9

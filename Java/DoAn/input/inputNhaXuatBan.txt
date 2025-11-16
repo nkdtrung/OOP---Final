@@ -1,0 +1,17 @@
+NXB01,NXB Kim Dong,123 Tran Hung Dao - Ha Noi,0243826452,kimdong@nxb.vn
+NXB02,NXB Giao Duc Viet Nam,81 Tran Hung Dao - Ha Noi,0243822916,giaoduc@nxb.vn
+NXB03,NXB Tre,161B Ly Chinh Thang - TP.HCM,0283932744,tre@nxb.vn
+NXB04,NXB Thong Tin va Truyen Thong,115 Tran Duy Hung - Ha Noi,0243556845,mic@nxb.vn
+NXB05,NXB Chinh Tri Quoc Gia,61 Nguyen Du - Ha Noi,0243943069,chinhtriqg@nxb.vn
+NXB06,NXB Lao Dong,175 Giang Vo - Ha Noi,0243851263,laodong@nxb.vn
+NXB07,NXB Van Hoa - Thong Tin,68 Nguyen Thi Minh Khai - Ha Noi,0243943682,vanhoa@nxb.vn
+NXB08,NXB Phu Nu,39 Hang Chuoi - Ha Noi,0243971024,phunu@nxb.vn
+NXB09,NXB Thanh Nien,64 Ba Trieu - Ha Noi,0243942591,thanhnien@nxb.vn
+NXB10,NXB Dai Hoc Quoc Gia Ha Noi,16 Hang Chuoi - Ha Noi,0243822637,dhqghn@nxb.vn
+NXB11,NXB Khoa Hoc Xa Hoi,39 Hang Chuoi - Ha Noi,0243971024,khxh@nxb.vn
+NXB12,NXB Y Hoc,65 Trang Thi - Ha Noi,0243826928,yhoc@nxb.vn
+NXB13,NXB Thong Ke,6 Hoang Dieu - Ha Noi,0243733474,thongke@nxb.vn
+NXB14,NXB Van Hoc,18 Nguyen Trai - Ha Noi,0243943568,vanhoc@nxb.vn
+NXB15,NXB Du Lich,80 Nguyen Du - Ha Noi,0243942281,dulich@nxb.vn
+NXB16,NXB DTrung,Long An,0123456789,dpajd@gmail.com
+Tong: 16

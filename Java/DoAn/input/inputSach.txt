@@ -1,0 +1,10 @@
+S001,Lap trinh Java can ban,Nguyen Van A,TL01,NXB01,20,85000.0
+S002,Cau truc du lieu va giai thuat,Tran Thi B,TL02,NXB02,15,92000.0
+S003,Lap trinh Python co ban,Le Minh C,TL03,NXB03,18,99000.0
+S004,Machine Learning co ban,Pham Thanh D,TL04,NXB03,12,115000.0
+S011,An toan thong tin,Nguyen Thi E,TL07,NXB09,13,87000.0
+S012,Co so du lieu,Tran Van F,TL08,NXB02,22,91000.0
+S013,Tri tue nhan tao nang cao,Do Van G,TL09,NXB03,11,97000.0
+S014,Tin hoc dai cuong,Le Thi H,TL10,NXB01,25,75000.0
+S099,ABCDE,Trung,TL99,NXB99,99,999999.0
+Tong: 9

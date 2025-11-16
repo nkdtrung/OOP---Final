@@ -1,0 +1,7 @@
+S005,Artificial Intelligence,Bruce Allen,TL04,NXB04,10,180000.0,SachNN,English,USA
+S006,Deep Learning with Python,Francois Chollet,TL04,NXB04,9,220000.0,SachNN,English,France
+S007,Data Science for Beginners,Michael Scott,TL04,NXB05,14,175000.0,SachNN,English,UK
+S008,Design Patterns,Erich Gamma,TL05,NXB06,6,210000.0,SachNN,English,Germany
+S009,Operating Systems Concepts,Abraham Silberschatz,TL05,NXB07,7,195000.0,SachNN,English,USA
+S010,JavaScript The Good Parts,Douglas Crockford,TL06,NXB08,9,165000.0,SachNN,English,USA
+Tong: 6
