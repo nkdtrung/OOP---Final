@@ -2,7 +2,15 @@ package Java.DoAn.Class_chinh;
 
 import java.util.Scanner;
 
-public abstract class Sach {
+/**
+ * Interface đơn giản để kiểm tra tính hợp lệ của dữ liệu
+ */
+interface IValidatable {
+    boolean isValid();
+    String getValidationMessage();
+}
+
+public abstract class Sach implements IValidatable {
     private String masach, tensach, matg, matl, manxb;
     private int soLuong;
     private double dongia;
@@ -95,5 +103,29 @@ public abstract class Sach {
     public abstract String getLoaiSach();
     public abstract double tinhGiaBan();
     public abstract boolean isAvailable();
+    
+    // Triển khai interface IValidatable
+    @Override
+    public boolean isValid() {
+        // Kiểm tra các điều kiện cơ bản
+        if (masach == null || masach.trim().isEmpty()) return false;
+        if (tensach == null || tensach.trim().isEmpty()) return false;
+        if (soLuong < 0) return false;
+        if (dongia <= 0) return false;
+        return true;
+    }
+    
+    @Override
+    public String getValidationMessage() {
+        if (masach == null || masach.trim().isEmpty()) 
+            return "Ma sach khong duoc de trong";
+        if (tensach == null || tensach.trim().isEmpty()) 
+            return "Ten sach khong duoc de trong";
+        if (soLuong < 0) 
+            return "So luong phai >= 0";
+        if (dongia <= 0) 
+            return "Don gia phai > 0";
+        return "Du lieu hop le";
+    }
     
 }

@@ -53,15 +53,18 @@ public class DanhSachHoaDon {
     public void themHDFile() {  
         DanhSachCTHD dscthd = new DanhSachCTHD();
         dscthd.docFile("Java/DoAn/input/inputChiTietHD.txt");
+        
         for (int i = 0; i < dscthd.size(); i++) {
             ChiTietHoaDon cthd = dscthd.getCTHD(i);
             String mahd = cthd.getMaHD();
+
             HoaDon hd = this.timHoaDonKhongXuat(mahd);
             if (hd != null) {
                 double thanhtien = cthd.getThanhTien();
                 hd.setTongTien(hd.getTongTien() + thanhtien);
             }
         }
+        tuDongCapNhatFile(); // Lưu file sau khi cập nhật tổng tiền
     }
     public void themHoaDon() {
         Scanner sc = new Scanner(System.in);
@@ -94,21 +97,17 @@ public class DanhSachHoaDon {
         double tongTien = 0.0;
         for (int i = 0; i < soLuongCT; i++) {
             System.out.println("\n--- Chi tiet hoa don thu " + (i+1) + " ---");
-            System.out.print("Nhap ma sach: ");
-            String masach = sc.nextLine();
-            System.out.print("Nhap so luong: ");
-            int soluong = sc.nextInt();
-            System.out.print("Nhap don gia: ");
-            double dongia = sc.nextDouble();
-            sc.nextLine(); // Clear buffer
+            ChiTietHoaDon ct = new ChiTietHoaDon();
+            ct.setMaHD(mahd);
+            ct.nhap();
             
-            double thanhtien = soluong * dongia;
+            double thanhtien = ct.getSoLuong() * ct.getDonGia();
+            ct.setThanhTien(thanhtien);
             tongTien += thanhtien;
             
-            ChiTietHoaDon ct = new ChiTietHoaDon(mahd, masach, soluong, dongia, thanhtien);
-            dscthd.themChiTietHoaDon(ct, false); // Không tự động lưu từng chi tiết
+            dscthd.themChiTietHoaDon(ct, false);
         }
-        dscthd.tuDongCapNhatFile(); // Lưu 1 lần sau khi thêm hết
+        dscthd.tuDongCapNhatFile();
         
         dshd[n].setTongTien(tongTien);
         n++;

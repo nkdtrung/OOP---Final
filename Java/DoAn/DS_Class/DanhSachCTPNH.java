@@ -75,21 +75,6 @@ public class DanhSachCTPNH {
         return null;
     }
 
-    public void nhapDanhSach() {
-        Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so luong chi tiet phieu nhap hang muon them: ");
-        int soLuong = sc.nextInt();
-        sc.nextLine(); 
-
-        for (int i = 0; i < soLuong; i++) {
-            System.out.println("\n--- Nhap thong tin chi tiet phieu nhap hang thu " + (i + 1) + " ---");
-            CTPhieuNhapHang ctPNH = new CTPhieuNhapHang();
-            ctPNH.nhap(); 
-            themChiTietPNH(ctPNH); 
-            System.out.println("Them thanh cong!");
-        }
-    }
-
     public double themDanhSachChoPNH(String maPNH) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so luong chi tiet phieu nhap hang: ");
