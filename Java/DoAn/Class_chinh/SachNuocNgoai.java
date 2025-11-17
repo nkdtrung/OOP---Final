@@ -1,16 +1,12 @@
 package Java.DoAn.Class_chinh;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.nio.channels.ScatteringByteChannel;
+import java.util.Scanner;
 
 public class SachNuocNgoai extends Sach {
-    // Thuộc tính:
     String ngonngu, quocgia;
 
-    // Phương thức:
 
-    //Hàm thiết lập:
     public SachNuocNgoai() {
         super();
     }  
@@ -29,7 +25,7 @@ public class SachNuocNgoai extends Sach {
     @Override
     public void nhap() {
         super.nhap();
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ngon ngu: ");
         ngonngu = sc.nextLine();
         System.out.print("Nhap quoc gia: ");
@@ -40,20 +36,6 @@ public class SachNuocNgoai extends Sach {
         super.xuat();
         System.out.printf("%-15s ", ngonngu);
         System.out.printf("%-15s\n", quocgia);
-    }
-
-    //Ghi File:
-    @Override
-    public String StringFile() {
-        return super.StringFile() + ", " + getNgonNgu() + ", " + getQuocGia();
-    }
-
-    @Override
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("Java/DoAn/input/inputSach.txt", true))) {
-            writer.println(StringFile());
-        }
-        catch (IOException e) {}
     }
 
     // Get, set:
@@ -78,7 +60,6 @@ public class SachNuocNgoai extends Sach {
 
     @Override
     public double tinhGiaBan() {
-        // Sách nước ngoài có giá bán cao hơn 20% do phải nhập khẩu
         return getDonGia() * 1.2;
     }
 

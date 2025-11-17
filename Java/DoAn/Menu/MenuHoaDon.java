@@ -157,7 +157,7 @@ public class MenuHoaDon {
         // Tạo hóa đơn với tổng tiền đã tính
         HoaDon hd = new HoaDon(mahd, manv, makh, ngaylap, tongtien);
         this.dshd.themHoaDon(hd); // Thêm vào danh sách hóa đơn
-        hd.ghiFile(); // Ghi vào file
+        this.dshd.tuDongCapNhatFile(); // Lưu vào file
         
         System.out.println("\n=== THONG TIN HOA DON VUA TAO ===");
         System.out.printf("Ma HD: %s | Ma NV: %s | Ma KH: %s\n", mahd, manv, makh);

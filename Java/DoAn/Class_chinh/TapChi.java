@@ -1,17 +1,11 @@
 package Java.DoAn.Class_chinh;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Scanner;
 
 public class TapChi  extends Sach {
-    // Thuộc tính:
     private int sophathanh;
     private String chuyenmuc;
 
-    // Phương thức:
-
-    //Hàm thiết lập:
     public TapChi() {
         super();
     }
@@ -30,7 +24,7 @@ public class TapChi  extends Sach {
     @Override
     public void nhap() {
         super.nhap();
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so phat hanh: ");
         sophathanh = sc.nextInt();
         sc.nextLine();
@@ -42,19 +36,6 @@ public class TapChi  extends Sach {
         super.xuat();
         System.out.printf("%-15d ", sophathanh);
         System.out.printf("%-20s\n", chuyenmuc);
-    }
-
-    @Override
-    public String StringFile() {
-        return super.StringFile() + ", " + getSoPhatHanh() + ", " + getChuyenMuc();
-    }
-
-    @Override
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("Java/DoAn/input/inputSach.txt", true))) {
-            writer.println(StringFile());
-        }
-        catch (IOException e) {}
     }
 
     // Get, set:
@@ -71,7 +52,6 @@ public class TapChi  extends Sach {
         this.chuyenmuc = chuyenmuc;
     }
 
-    // Implement abstract methods:
     @Override
     public String getLoaiSach() {
         return "Tạp chí";
@@ -79,13 +59,11 @@ public class TapChi  extends Sach {
 
     @Override
     public double tinhGiaBan() {
-        // Tạp chí giá bán bằng đơn giá
         return getDonGia();
     }
 
     @Override
     public boolean isAvailable() {
-        // Tạp chí cần tồn kho nhiều hơn do phát hành định kỳ
         return getSoLuong() > 5;
     }
 

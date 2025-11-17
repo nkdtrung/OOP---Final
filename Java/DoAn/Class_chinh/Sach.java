@@ -1,21 +1,15 @@
 package Java.DoAn.Class_chinh;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public abstract class Sach {
-    // Thuộc tính:
     private String masach, tensach, matg, matl, manxb;
     private int soLuong;
     private double dongia;
 
-    // Phương thức:
-
-    //Hàm thiết lập:
     public Sach() {
     }
+
     public Sach(String masach, String tensach, String matg, String matl, String manxb, int soLuong, double dongia) {
         this.masach = masach;
         this.tensach = tensach;
@@ -35,7 +29,6 @@ public abstract class Sach {
         this.dongia = s.dongia;
     }
 
-    // Nhập, xuất:
     public void nhap() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ten sach: ");
@@ -53,17 +46,6 @@ public abstract class Sach {
     }
     public void xuat() {
         System.out.printf("%-10s %-40s %-20s %-10s %-10s %-10d %-10.2f", masach, tensach, matg, matl, manxb, soLuong, dongia);
-    }
-
-    //Ghi File:
-    public String StringFile() {
-        return getMaSach() + ", " + getTenSach() + ", " + getMaTG() + ", " + getMaTL() + ", " + getMaNXB() + ", " + getSoLuong() + ", " + getDonGia();
-    }
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("Java/DoAn/input/inputSach.txt", true))) {
-            writer.println(StringFile());
-        }
-        catch (IOException e) {}
     }
 
     // Get, set:
@@ -110,7 +92,6 @@ public abstract class Sach {
         this.dongia = dongia;
     }
 
-    // Abstract methods:
     public abstract String getLoaiSach();
     public abstract double tinhGiaBan();
     public abstract boolean isAvailable();

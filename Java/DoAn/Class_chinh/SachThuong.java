@@ -1,11 +1,7 @@
 package Java.DoAn.Class_chinh;
 
 public class SachThuong extends Sach {
-    // Thuộc tính: Không có thuộc tính bổ sung
 
-    // Phương thức:
-
-    //Hàm thiết lập:
     public SachThuong() {
         super();
     }
@@ -16,7 +12,6 @@ public class SachThuong extends Sach {
         super(s);
     }
 
-    // Implement abstract methods:
     @Override
     public String getLoaiSach() {
         return "Sách thường";
@@ -24,7 +19,6 @@ public class SachThuong extends Sach {
 
     @Override
     public double tinhGiaBan() {
-        // Sách thường giá bán bằng đơn giá
         return getDonGia();
     }
 

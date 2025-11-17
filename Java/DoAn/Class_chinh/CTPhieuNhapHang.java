@@ -57,20 +57,6 @@ public class CTPhieuNhapHang {
         return !maPNH.isEmpty() && !maSach.isEmpty() && soLuong > 0 && donGia > 0;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        CTPhieuNhapHang other = (CTPhieuNhapHang) obj;
-        return maPNH.equals(other.maPNH) && maSach.equals(other.maSach);
-    }
-
-    @Override
-    public String toString() {
-        return String.format("CTPhieuNhapHang[maPNH=%s, maSach=%s, soLuong=%d, donGia=%.2f, thanhTien=%.2f]",
-            maPNH, maSach, soLuong, donGia, thanhTien);
-    }
-
     public String getmaPNH() {
         return maPNH;
     }

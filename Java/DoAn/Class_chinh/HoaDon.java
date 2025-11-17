@@ -1,17 +1,9 @@
 package Java.DoAn.Class_chinh;
 
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.io.IOException;
-
 public class HoaDon {
-    // Thuộc tính:
     private String mahd, manv, makh, ngaylap;
     private double tongtien;
 
-    // Phương thức:
-
-    //Hàm thiết lập:
     public HoaDon() {
     }
     public HoaDon(String mahd, String manv, String makh, String ngaylap, double tongtien) {
@@ -42,18 +34,6 @@ public class HoaDon {
     }
     public void xuat() {
         System.out.printf("%-10s %-10s %-10s %-15s %15.2f\n", mahd, manv, makh, ngaylap, tongtien);
-    }
-
-    //Ghi File:
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("Java/DoAn/input/inputHoaDon.txt", true))) {
-            writer.print(getMaHD());
-            writer.print(", " + getMaNV());
-            writer.print(", " + getMaKH());
-            writer.print(", " + getNgayLap());
-            writer.println(", " + getTongTien());
-        }
-        catch (IOException e) {}
     }
 
     // Get, set:

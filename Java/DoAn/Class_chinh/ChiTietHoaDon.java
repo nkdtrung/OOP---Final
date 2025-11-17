@@ -1,8 +1,5 @@
 package Java.DoAn.Class_chinh;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class ChiTietHoaDon {
@@ -25,18 +22,6 @@ public class ChiTietHoaDon {
         this.soluong = soluong;
         this.dongia = dongia;
         this.thanhtien = thanhtien;
-    }
-
-    //Ghi File:
-    public void ghiFile() {
-        try (PrintWriter writer = new PrintWriter(new FileWriter("Java/DoAn/input/inputChiTietHD.txt", true))) {
-            writer.print(getMaHD());
-            writer.print(", " + getMaSach());
-            writer.print(", " + getSoLuong());
-            writer.print(", " + getDonGia());
-            writer.println(", " + getThanhTien());
-        }
-        catch (IOException e) {}
     }
 
     public void nhap() {
