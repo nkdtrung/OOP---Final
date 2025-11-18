@@ -1,4 +1,5 @@
 package Java.DoAn.Class_chinh;
+import java.util.Scanner;
 
 public class HoaDon {
     private String mahd, manv, makh, ngaylap;
@@ -23,7 +24,7 @@ public class HoaDon {
 
     // Nhập, xuất:
     public void nhap() {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma nhan vien: ");
         manv = sc.nextLine();
         System.out.print("Nhap ma khach hang: ");

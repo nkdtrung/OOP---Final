@@ -2,9 +2,8 @@ package Java.DoAn.Class_chinh;
 
 import java.util.Scanner;
 
-/**
- * Interface đơn giản để kiểm tra tính hợp lệ của dữ liệu
- */
+
+//Interface đơn giản để kiểm tra tính hợp lệ của dữ liệu
 interface IValidatable {
     boolean isValid();
     String getValidationMessage();
@@ -107,9 +106,8 @@ public abstract class Sach implements IValidatable {
     // Triển khai interface IValidatable
     @Override
     public boolean isValid() {
-        // Kiểm tra các điều kiện cơ bản
-        if (masach == null || masach.trim().isEmpty()) return false;
-        if (tensach == null || tensach.trim().isEmpty()) return false;
+        if (masach == null) return false;
+        if (tensach == null) return false;
         if (soLuong < 0) return false;
         if (dongia <= 0) return false;
         return true;
@@ -117,9 +115,9 @@ public abstract class Sach implements IValidatable {
     
     @Override
     public String getValidationMessage() {
-        if (masach == null || masach.trim().isEmpty()) 
+        if (masach == null) 
             return "Ma sach khong duoc de trong";
-        if (tensach == null || tensach.trim().isEmpty()) 
+        if (tensach == null) 
             return "Ten sach khong duoc de trong";
         if (soLuong < 0) 
             return "So luong phai >= 0";

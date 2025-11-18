@@ -26,14 +26,12 @@ public class ChiTietHoaDon {
 
     public void nhap() {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap ma hoa don: ");
-        mahd = sc.nextLine();
         System.out.print("Nhap ma sach: ");
         masach = sc.nextLine();
         System.out.print("Nhap so luong: ");
         soluong = sc.nextInt();
-        System.out.print("Nhap thanh tien: ");
-        thanhtien = sc.nextDouble();
+        System.out.print("Nhap don gia: ");
+        dongia = sc.nextDouble();
     }
     public void xuat() {
         System.out.printf("%-10s %-15s %-10d %12.2f %12.2f\n", mahd, masach, soluong, dongia, thanhtien);

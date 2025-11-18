@@ -53,7 +53,7 @@ public class DanhSachHoaDon {
     public void themHDFile() {  
         DanhSachCTHD dscthd = new DanhSachCTHD();
         dscthd.docFile("Java/DoAn/input/inputChiTietHD.txt");
-        
+
         for (int i = 0; i < dscthd.size(); i++) {
             ChiTietHoaDon cthd = dscthd.getCTHD(i);
             String mahd = cthd.getMaHD();
@@ -64,7 +64,7 @@ public class DanhSachHoaDon {
                 hd.setTongTien(hd.getTongTien() + thanhtien);
             }
         }
-        tuDongCapNhatFile(); // Lưu file sau khi cập nhật tổng tiền
+        tuDongCapNhatFile();
     }
     public void themHoaDon() {
         Scanner sc = new Scanner(System.in);
@@ -137,7 +137,7 @@ public class DanhSachHoaDon {
         return null;
     }
     
-    // Tìm hóa đơn không xuất ra màn hình (dùng nội bộ)
+    // Tìm hóa đơn không xuất ra màn hình
     private HoaDon timHoaDonKhongXuat(String ma) {
         for (int i=0; i<n;i++) {
             if (dshd[i].getMaHD().equals(ma)) {
@@ -239,9 +239,9 @@ public class DanhSachHoaDon {
             
             // Tạo và thêm chi tiết hóa đơn
             ChiTietHoaDon ctMoi = new ChiTietHoaDon(mahd, masach, soluong, dongia, thanhtien);
-            dscthd.themChiTietHoaDon(ctMoi, false); // Không tự động lưu từng chi tiết
+            dscthd.themChiTietHoaDon(ctMoi, false);
         }
-        dscthd.tuDongCapNhatFile(); // Lưu 1 lần sau khi thêm hết
+        dscthd.tuDongCapNhatFile();
         
         // Cập nhật tổng tiền hóa đơn
         HoaDon hd = timKiemTheoMa(mahd);

@@ -1,11 +1,10 @@
 package Java.DoAn.Class_chinh;
 
 import java.util.Scanner;
+
 public class TheLoai {
-    //thuộc tính
     private String matheloai, tentheloai;
 
-    //hàm thiết lập
     public TheLoai() {
     }
     public TheLoai(String matheloai, String tentheloai) {

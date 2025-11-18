@@ -12,7 +12,7 @@ import Java.DoAn.Class_chinh.KhachHang;
 public class DanhSachKH {
     private KhachHang[] ds;
     private int n;
-    private static int nextId = 1; //thuộc tính static
+    private static int nextId = 1;
 
     public DanhSachKH() {
         ds = new KhachHang[0];
@@ -33,7 +33,7 @@ public class DanhSachKH {
         this.n = d.n;
     }	
 
-    private static String taoMaKHTuDong() {  // Phương thức static
+    private static String taoMaKHTuDong() {
         return String.format("KH%03d", nextId++);
     }
 

@@ -24,7 +24,7 @@ public class DanhSachCTHD {
                 if (line.isEmpty() || line.startsWith("Tong:")) continue;
 
                 String[] parts = line.split(",");
-                if (parts.length < 5) continue;
+                if (parts.length < 5) continue;  //đủ 5 thuộc tính
 
                 String mahd = parts[0].trim();
                 String masach = parts[1].trim();
@@ -35,7 +35,6 @@ public class DanhSachCTHD {
                 ChiTietHoaDon cthd = new ChiTietHoaDon(mahd, masach, soluong, dongia, thanhtien);
                 themChiTietHoaDon(cthd);
             }
-            // System.out.println("Da doc file " + filePath);
         } catch (FileNotFoundException e) {
             System.out.println("Khong tim thay file: " + e.getMessage());
         } catch (Exception e) {
@@ -71,7 +70,7 @@ public class DanhSachCTHD {
     }
 
     // Thêm chi tiết với tùy chọn tự động cập nhật file
-    public void themChiTietHoaDon(ChiTietHoaDon cthd, boolean autoSave) {
+    public void themChiTietHoaDon (ChiTietHoaDon cthd, boolean autoSave) {
         dscthd = Arrays.copyOf(dscthd, n + 1);
         dscthd[n] = cthd;
         n++;
@@ -79,8 +78,8 @@ public class DanhSachCTHD {
             tuDongCapNhatFile();
         }
     }
-
-    // Số phần tử
+    
+    // Dùng cho DS hóa đơn
     public int size() {
         return n;
     }
@@ -96,17 +95,16 @@ public class DanhSachCTHD {
         int i = 0;
         while (i < n) {
             if (dscthd[i].getMaHD().equals(maHD)) {
-                // Dịch các phần tử phía sau lên
                 for (int j = i; j < n - 1; j++) {
                     dscthd[j] = dscthd[j + 1];
                 }
                 dscthd = Arrays.copyOf(dscthd, n - 1);
                 n--;
-                // Không tăng i vì đã dịch phần tử mới lên vị trí i
             } else {
                 i++;
             }
         }
         tuDongCapNhatFile();
     }
+    
 }

@@ -2,10 +2,9 @@ package Java.DoAn.Class_chinh;
 
 import java.util.Scanner;
 
-public class NhaXuatBan {
-     //thuộc tính    
+public class NhaXuatBan {  
     private String maNXB, tenNXB, diaChi, SoDienThoai, Email; 
-    //hàm thiết lập
+
     public NhaXuatBan(){
         maNXB = "";
         tenNXB="";
@@ -24,7 +23,6 @@ public class NhaXuatBan {
 
 
     }
-    // input / output for NhaXuatBan
     public void nhap(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Nhap ma NXB: ");

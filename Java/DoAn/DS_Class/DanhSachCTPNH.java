@@ -23,6 +23,15 @@ public class DanhSachCTPNH {
         docFile(filePath);
     }
 
+    public CTPhieuNhapHang getCTPNH(int i) {
+        if (i >= 0 && i < n) return dsctPNH[i];
+        return null;
+    }
+
+    public int size() {
+        return n;
+    }
+
    
     public void docFile(String filePath) {
         dsctPNH = new CTPhieuNhapHang[0];
@@ -55,7 +64,6 @@ public class DanhSachCTPNH {
         themChiTietPNH(ctPNH, true);
     }
 
-    // Thêm chi tiết với tùy chọn tự động cập nhật file
     public void themChiTietPNH(CTPhieuNhapHang ctPNH, boolean autoSave) {
         dsctPNH = Arrays.copyOf(dsctPNH, n + 1);
         dsctPNH[n] = ctPNH;
@@ -64,17 +72,10 @@ public class DanhSachCTPNH {
             tuDongCapNhatFile();
         }
     }
-
-    public int size() {
-        return n;
-    }
-
     
-    public CTPhieuNhapHang getCTPNH(int i) {
-        if (i >= 0 && i < n) return dsctPNH[i];
-        return null;
-    }
+    // Dùng cho DS phiếu nhập hàng
 
+    // Cập nhật Tổng tiền, thông báo nhập, gọi hàm them(ct, autoSave) để thêm chi tiết
     public double themDanhSachChoPNH(String maPNH) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap so luong chi tiet phieu nhap hang: ");
@@ -93,23 +94,21 @@ public class DanhSachCTPNH {
             double tt = sl * dg;
             tong += tt;
             CTPhieuNhapHang ct = new CTPhieuNhapHang(maPNH, maSach, sl, dg, tt);
-            themChiTietPNH(ct, false); // Không tự động lưu từng chi tiết
+            themChiTietPNH(ct, false);
         }
-        tuDongCapNhatFile(); // Lưu 1 lần sau khi thêm hết
+        tuDongCapNhatFile();
         return tong;
     }
+    
 
+
+    // Sửa chi tiết theo mã PNH và mã sách
     public void suaChiTiet(String maPNH, String maSach) {
         boolean timThay = false;
         for (int i = 0; i < n; i++) {
-            if (dsctPNH[i].getmaPNH().equalsIgnoreCase(maPNH) && 
-                dsctPNH[i].getmaSach().equalsIgnoreCase(maSach)) {
-                
-                System.out.println("\n--- Thong tin chi tiet hien tai ---");
-                dsctPNH[i].xuat();
-                
+            if (dsctPNH[i].getmaPNH().equals(maPNH) && dsctPNH[i].getmaSach().equals(maSach)) {
+                    
                 Scanner sc = new Scanner(System.in);
-                System.out.println("\n--- Nhap thong tin moi ---");
                 System.out.print("Nhap so luong moi: ");
                 int soLuongMoi = sc.nextInt();
                 dsctPNH[i].setsoLuong(soLuongMoi);
@@ -118,40 +117,33 @@ public class DanhSachCTPNH {
                 double donGiaMoi = sc.nextDouble();
                 dsctPNH[i].setDonGia(donGiaMoi);
                 
-                System.out.println("Sua thanh cong!");
                 tuDongCapNhatFile();
                 timThay = true;
-                break;
+                break;  //thoát khỏi vòng for
             }
         }
         if (!timThay) {
             System.out.println("Khong tim thay chi tiet voi ma PNH: " + maPNH + " va ma sach: " + maSach);
         }
     }
-
-    public void xoaChiTiet(String maPNH, String maSach) {
-        int viTri = -1;
-
-        for (int i = 0; i < n; i++) {
-            if (dsctPNH[i].getmaPNH().equalsIgnoreCase(maPNH) && 
-                dsctPNH[i].getmaSach().equalsIgnoreCase(maSach)) {
-                viTri = i;
-                break;
+    
+    
+    // Xóa tất cả chi tiết theo mã PNH
+    public void xoaChiTietTheoMaPNH(String maPNH) {
+        int i = 0;
+        while (i < n) {
+            if (dsctPNH[i].getmaPNH().equals(maPNH)) {
+                // Dịch các phần tử về phía trước
+                for (int j = i; j < n - 1; j++) {
+                    dsctPNH[j] = dsctPNH[j + 1];
+                }
+                dsctPNH = Arrays.copyOf(dsctPNH, n - 1);
+                n--;
+            } else {
+                i++;
             }
         }
-
-        if (viTri != -1) {
-
-            for (int i = viTri; i < n - 1; i++) {
-                dsctPNH[i] = dsctPNH[i + 1];
-            }
-            n--; 
-            dsctPNH = Arrays.copyOf(dsctPNH, n); 
-            System.out.println("Xoa thanh cong!");
-            tuDongCapNhatFile();
-        } else {
-            System.out.println("Khong tim thay chi tiet voi ma PNH: " + maPNH + " va ma sach: " + maSach);
-        }
+        tuDongCapNhatFile();
     }
 
     public void timKiemTheoMaPNH(String maPNH) {

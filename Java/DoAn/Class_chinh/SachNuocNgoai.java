@@ -1,6 +1,5 @@
 package Java.DoAn.Class_chinh;
 
-import java.nio.channels.ScatteringByteChannel;
 import java.util.Scanner;
 
 public class SachNuocNgoai extends Sach {
@@ -52,7 +51,6 @@ public class SachNuocNgoai extends Sach {
         this.quocgia = quocgia;
     }
 
-    // Implement abstract methods:
     @Override
     public String getLoaiSach() {
         return "Sách nước ngoài";

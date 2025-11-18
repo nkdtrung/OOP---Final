@@ -64,7 +64,7 @@ public class DanhSachPNH {
     }
 
     public PhieuNhapHang themPNH() {
-        java.util.Scanner sc = new java.util.Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         String mapnh;
         do {
             System.out.print("Nhap ma phieu nhap hang: ");
