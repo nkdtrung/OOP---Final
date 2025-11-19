@@ -127,13 +127,11 @@ public class DanhSachCTPNH {
         }
     }
     
-    
     // Xóa tất cả chi tiết theo mã PNH
     public void xoaChiTietTheoMaPNH(String maPNH) {
         int i = 0;
         while (i < n) {
             if (dsctPNH[i].getmaPNH().equals(maPNH)) {
-                // Dịch các phần tử về phía trước
                 for (int j = i; j < n - 1; j++) {
                     dsctPNH[j] = dsctPNH[j + 1];
                 }
@@ -148,8 +146,7 @@ public class DanhSachCTPNH {
 
     public void timKiemTheoMaPNH(String maPNH) {
         System.out.println("\n=== KET QUA TIM KIEM ===");
-        System.out.printf("%-10s %-15s %-10s %12s %12s%n", 
-            "Ma PNH", "Ma Sach", "So Luong", "Don Gia", "Thanh Tien");
+        System.out.printf("%-10s %-15s %-10s %12s %12s%n", "Ma PNH", "Ma Sach", "So Luong", "Don Gia", "Thanh Tien");
         System.out.println("-------------------------------------------------------------------");
         
         boolean timThay = false;
@@ -182,6 +179,7 @@ public class DanhSachCTPNH {
         if (!timThay) {
             System.out.println("Khong tim thay chi tiet nao voi ma sach: " + maSach);
         }
+        
     }
 
     public void xuatDanhSach() {

@@ -70,7 +70,7 @@ public class DanhSachCTHD {
     }
 
     // Thêm chi tiết với tùy chọn tự động cập nhật file
-    public void themChiTietHoaDon (ChiTietHoaDon cthd, boolean autoSave) {
+   public void themChiTietHoaDon (ChiTietHoaDon cthd, boolean autoSave) {
         dscthd = Arrays.copyOf(dscthd, n + 1);
         dscthd[n] = cthd;
         n++;

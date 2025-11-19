@@ -13,10 +13,10 @@ import Java.DoAn.Class_chinh.ChiTietHoaDon;
 import Java.DoAn.Class_chinh.HoaDon;
 
 public class DanhSachHoaDon {
-    private HoaDon dshd[];
+    private HoaDon[] dshd;
     private int n;
 
-    java.util.Scanner sc = new java.util.Scanner(System.in);
+    Scanner sc = new Scanner(System.in);
 
     //Hàm thiết lập:
     public DanhSachHoaDon() {
@@ -72,7 +72,7 @@ public class DanhSachHoaDon {
         dscthd.docFile("Java/DoAn/input/inputChiTietHD.txt");
         DanhSachSach dssach = new DanhSachSach();
         dssach.docFile("Java/DoAn/input/inputSach.txt");
-        
+         
         String mahd;
         do {
             System.out.print("Nhap ma hoa don: ");
@@ -116,6 +116,8 @@ public class DanhSachHoaDon {
         System.out.println("\nDa them hoa don thanh cong!");
         System.out.println("Tong tien hoa don: " + String.format("%.2f", tongTien) + " VND");
     }
+
+    //Thêm
     public void themHoaDon(HoaDon hd) {
         if (timKiemTheoMa(hd.getMaHD()) != null) {
             System.out.println("Ma hoa don da ton tai. Khong the them!");
@@ -128,14 +130,15 @@ public class DanhSachHoaDon {
     }
 
     //Tìm
-    public HoaDon timKiemTheoMa(String ma) {
-        for (int i=0; i<n;i++) {
-            if (dshd[i].getMaHD().equalsIgnoreCase(ma)) {
+    public HoaDon timKiemTheoMa (String ma) {
+        for (int i = 0; i < n; i++ ){
+            if (dshd[i].getMaHD().equals(ma)) {
                 return dshd[i];
             }
         }
         return null;
     }
+    
     
     // Tìm hóa đơn không xuất ra màn hình
     private HoaDon timHoaDonKhongXuat(String ma) {
@@ -165,7 +168,7 @@ public class DanhSachHoaDon {
                 System.out.println("6. Sua chi tiet hoa don");
                 System.out.print("Nhap lua chon: ");
                 int choice = sc.nextInt();
-                sc.nextLine(); // Xóa buffer
+                sc.nextLine();
                 
                 switch (choice) {
                     case 1:
@@ -284,37 +287,40 @@ public class DanhSachHoaDon {
     //Thống kê:
     public void thongKeTongThu() {
         int namMin = 9999, namMax = 0;
+
         for (int i = 0; i < n; i++) {
-            try {
+            try{
                 LocalDate ngaylap = LocalDate.parse(dshd[i].getNgayLap());
                 int nam = ngaylap.getYear();
                 if (nam < namMin) namMin = nam;
                 if (nam > namMax) namMax = nam;
-            } catch (Exception e) {
-            }
+            } catch (Exception e) {}
         }
+
         
         // Tạo mảng thống kê
-        int soNam = namMax - namMin + 1;
+        int soNam = namMax - namMin +1;
         int[] nam = new int[soNam];
         double[] tongThu = new double[soNam];
-        
         for (int i = 0; i < soNam; i++) {
             nam[i] = namMin + i;
             tongThu[i] = 0.0;
         }
+
         
         // Tính tổng thu theo năm
         for (int i = 0; i < n; i++) {
             try {
-                LocalDate ngaylap = LocalDate.parse(dshd[i].getNgayLap());
-                int namHD = ngaylap.getYear();
-                int viTri = namHD - namMin;
-                tongThu[viTri] += dshd[i].getTongTien();
-            } catch (Exception e) {
-            }
+                LocalDate ngayLap = LocalDate.parse(dshd[i].getNgayLap());
+                int namHD = ngayLap.getYear();
+                int vitri = namHD - namMin;
+                tongThu[vitri] = dshd[i].getTongTien();
+            } catch (Exception e) {}
         }
+
         
+
+            
         System.out.println("\n=== THONG KE TONG THU THEO NAM ===");
         System.out.printf("%-10s %20s\n", "Nam", "Tong Thu (VND)");
         System.out.println("-----------------------------------");
@@ -324,67 +330,53 @@ public class DanhSachHoaDon {
             }
         }
     }
+    
 
     // Thống kê chi tiêu theo khách hàng và năm
     public void thongKeChiTieuTheoKhachHangVaNam() {
-        if (n == 0) {
-            System.out.println("Danh sach hoa don rong!");
-            return;
-        }
-
-        // Đọc danh sách khách hàng
-        DanhSachKH dskh = new DanhSachKH();
-        dskh.docTuFile();
 
         // Tìm năm min và max
-        int namMin = 9999, namMax = 0;
-        for (int i = 0; i < n; i++) {
+        int namMax= 0, namMin = 9999;
+
+        for(int i= 0; i < n; i++) {
             try {
-                LocalDate ngaylap = LocalDate.parse(dshd[i].getNgayLap());
-                int nam = ngaylap.getYear();
-                if (nam < namMin) namMin = nam;
-                if (nam > namMax) namMax = nam;
-            } catch (Exception e) {
-            }
+                LocalDate ngay = LocalDate.parse(dshd[i].getNgayLap());
+                int nam = ngay.getYear();
+                if(nam < namMin) namMin = nam;
+                if(nam > namMax) namMax = nam;
+            }catch (Exception e) {}
         }
 
-        int soNam = namMax - namMin + 1;
-        String[] maKH = new String[100]; // Giả sử tối đa 100 khách hàng
+        int soNam = namMax - namMin +1;
+        String[] maKH = new String [100];
         int soKH = 0;
+        
 
         // Lấy danh sách mã khách hàng duy nhất
         for (int i = 0; i < n; i++) {
+            boolean tontai = false;
             String ma = dshd[i].getMaKH();
-            boolean daTonTai = false;
             for (int j = 0; j < soKH; j++) {
                 if (maKH[j].equals(ma)) {
-                    daTonTai = true;
+                    tontai = true;
                     break;
                 }
             }
-            if (!daTonTai) {
+            if (!tontai) {
                 maKH[soKH++] = ma;
             }
         }
 
-        // Sắp xếp mã khách hàng
-        for (int i = 0; i < soKH - 1; i++) {
-            for (int j = i + 1; j < soKH; j++) {
-                if (maKH[i].compareTo(maKH[j]) > 0) {
-                    String temp = maKH[i];
-                    maKH[i] = maKH[j];
-                    maKH[j] = temp;
-                }
-            }
-        }
+        
 
         // Tạo mảng 2 chiều lưu tổng tiền [khách hàng][năm]
-        double[][] tongTien = new double[soKH][soNam];
+        double tongTien[][] = new double[soKH][soNam];
         for (int i = 0; i < soKH; i++) {
             for (int j = 0; j < soNam; j++) {
                 tongTien[i][j] = 0.0;
             }
         }
+        
 
         // Tính tổng tiền cho từng khách hàng theo năm
         for (int i = 0; i < n; i++) {
@@ -397,6 +389,7 @@ public class DanhSachHoaDon {
                 }
             }
 
+        
             try {
                 LocalDate ngaylap = LocalDate.parse(dshd[i].getNgayLap());
                 int nam = ngaylap.getYear();
@@ -406,12 +399,17 @@ public class DanhSachHoaDon {
             }
         }
 
+        
+        
+        
+
+        
+
         // In tiêu đề
         System.out.println("\n========================================================================================================");
         System.out.println("                        THONG KE CHI TIEU THEO KHACH HANG VA NAM");
         System.out.println("========================================================================================================");
 
-        // In header: Mã KH | Năm1 | Năm2 | ... | Tổng
         System.out.printf("%-10s", "Ma KH");
         for (int i = 0; i < soNam; i++) {
             System.out.printf("%15d", namMin + i);
@@ -419,40 +417,23 @@ public class DanhSachHoaDon {
         System.out.printf("%20s\n", "TONG");
         System.out.println("--------------------------------------------------------------------------------------------------------");
 
-        // In từng dòng khách hàng
-        double[] tongTheoNam = new double[soNam]; // Tổng theo từng năm (cột)
-        double tongTatCa = 0.0; // Tổng tất cả
-
         for (int i = 0; i < soKH; i++) {
             System.out.printf("%-10s", maKH[i]);
-            double tongKH = 0.0; // Tổng của khách hàng này
+            double tongKH = 0.0;
 
             for (int j = 0; j < soNam; j++) {
                 System.out.printf("%,15.0f", tongTien[i][j]);
                 tongKH += tongTien[i][j];
-                tongTheoNam[j] += tongTien[i][j];
             }
 
             System.out.printf("%,20.0f\n", tongKH);
-            tongTatCa += tongKH;
         }
 
-        // In dòng tổng cuối cùng
-        System.out.println("--------------------------------------------------------------------------------------------------------");
-        System.out.printf("%-10s", "TONG");
-        for (int j = 0; j < soNam; j++) {
-            System.out.printf("%,15.0f", tongTheoNam[j]);
-        }
-        System.out.printf("%,20.0f\n", tongTatCa);
         System.out.println("========================================================================================================\n");
     }
 
     // Thống kê hiệu suất nhân viên
     public void thongKeHieuSuatNhanVien() {
-        if (n == 0) {
-            System.out.println("Danh sach hoa don rong!");
-            return;
-        }
 
         // Lấy danh sách mã nhân viên duy nhất
         String[] maNV = new String[100]; // Giả sử tối đa 100 nhân viên

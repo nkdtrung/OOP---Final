@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 import Java.DoAn.Class_chinh.NhaCungCap;
 
@@ -14,7 +15,7 @@ public class DanhSachNCC {
 
     // Hàm thiết lập
     public DanhSachNCC() {
-        dsNCC = new NhaCungCap[100];
+        dsNCC = new NhaCungCap[0];
         n = 0;
     }
 
@@ -42,15 +43,22 @@ public class DanhSachNCC {
 
     //thêm
     public void themNCC() {
-    if (n < dsNCC.length) {
-        dsNCC[n] = new NhaCungCap();
-        dsNCC[n].nhap();
+        if (n < dsNCC.length) {
+            dsNCC[n] = new NhaCungCap();
+            dsNCC[n].nhap();
+            n++;
+            tuDongCapNhatFile();
+        } else {
+            System.out.println("Danh sach da day, khong the them.");
+        }
+    }
+
+    public void themNCC(NhaCungCap ncc) {
+        dsNCC = Arrays.copyOf(dsNCC, n + 1);
+        dsNCC[n] = new NhaCungCap(ncc);
         n++;
         tuDongCapNhatFile();
-    } else {
-        System.out.println("Danh sach da day, khong the them.");
     }
-}
 
     //tìm
     public NhaCungCap timNCC(String maNCC) {
@@ -165,7 +173,7 @@ public class DanhSachNCC {
 
     // Đọc file
     public void docFile(String filePath) {
-        this.dsNCC = new NhaCungCap[100];
+        this.dsNCC = new NhaCungCap[0];
         n = 0;
         try (Scanner sc = new Scanner(new File(filePath))) {
             while (sc.hasNextLine()) {
@@ -183,10 +191,7 @@ public class DanhSachNCC {
                 String sdt = parts[3].trim();
 
                 NhaCungCap ncc = new NhaCungCap(tenNCC, maNCC, diaChi, sdt);
-                if (n < dsNCC.length) {
-                    dsNCC[n] = ncc;
-                    n++;
-                }
+                themNCC(ncc);
             }
             // System.out.println("Da doc file " + filePath);
         } catch (FileNotFoundException e) {

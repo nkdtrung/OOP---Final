@@ -3,7 +3,7 @@ package Java.DoAn.Class_chinh;
 import java.util.Scanner;
 
 
-//Interface đơn giản để kiểm tra tính hợp lệ của dữ liệu
+//Interface để kiểm tra tính hợp lệ của dữ liệu
 interface IValidatable {
     boolean isValid();
     String getValidationMessage();

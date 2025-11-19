@@ -188,6 +188,8 @@ public class DanhSachKH {
 		}
 		return ketQua;
 	}
+
+	
 	
 	private int[] tinhThongKeTheoGioiTinh() {
 		int nam = 0, nu = 0, khac = 0;
@@ -205,6 +207,7 @@ public class DanhSachKH {
 		
 		return new int[] {nam, nu, khac};
 	}
+	
 	
 	public void thongKeTheoGioiTinh() {
 		int[] result = tinhThongKeTheoGioiTinh();
