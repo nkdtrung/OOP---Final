@@ -134,7 +134,6 @@ public class DanhSachHoaDon {
             if (slMoi == 0) {
                 // Xóa sách nếu hết hàng
                 dssach.xoaSach(masach);
-                System.out.println("Sach " + masach + " da het hang va bi xoa khoi kho.");
             } else {
                 // Cập nhật số lượng mới
                 sach.setSoLuong(slMoi);
