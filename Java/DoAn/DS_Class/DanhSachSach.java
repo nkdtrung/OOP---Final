@@ -198,7 +198,6 @@ public class DanhSachSach {
                 }
                 ds = Arrays.copyOf(ds, n-1);
                 n--;
-                System.out.println("Da xoa sach co ma " + ma);
                 tuDongCapNhatFile();
                 return;
             }
