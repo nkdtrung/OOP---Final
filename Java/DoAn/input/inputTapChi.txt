@@ -2,6 +2,6 @@ S015,Tap chi Khoa hoc may tinh,Tap chi CNTT VN,TL11,NXB10,30,45000.0,TapChi,5,CN
 S016,Tac chi Toan hoc,Nguyen Bao,I02,NXB11,18,38000.0,TapChi,3,Toan hoc
 S017,Tac chi Sinh hoc,Nguyen Hong,I03,NXB12,20,42000.0,TapChi,2,Sinh hoc
 S018,Tac chi Kinh te Viet Nam,Tran Kien,I04,NXB13,25,50000.0,TapChi,7,Kinh te
-S019,Tac chi Van hoc va Nghe thuat,Le Hoa,I05,NXB14,17,40000.0,TapChi,4,Van hoc
-S020,Tac chi Du lich va Van hoa,Nguyen Nam,I06,NXB15,15,37000.0,TapChi,6,Van hoa
+S020,Tac chi Du lich va Van hoa,Nguyen Nam,I06,NXB15,1,37000.0,TapChi,6,Van hoa
+S019,Tham tu lung danh Conan,Trung,I-5,NXB14,15,3435432.0,TapChi,5,Truyen tranh
 Tong: 6

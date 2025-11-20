@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 
 import Java.DoAn.Class_chinh.ChiTietHoaDon;
 import Java.DoAn.Class_chinh.HoaDon;
+import Java.DoAn.Class_chinh.Sach;
 
 public class DanhSachHoaDon {
     private HoaDon[] dshd;
@@ -97,15 +98,48 @@ public class DanhSachHoaDon {
         double tongTien = 0.0;
         for (int i = 0; i < soLuongCT; i++) {
             System.out.println("\n--- Chi tiet hoa don thu " + (i+1) + " ---");
-            ChiTietHoaDon ct = new ChiTietHoaDon();
-            ct.setMaHD(mahd);
-            ct.nhap();
+            System.out.print("Nhap ma sach: ");
+            String masach = sc.nextLine();
             
-            double thanhtien = ct.getSoLuong() * ct.getDonGia();
-            ct.setThanhTien(thanhtien);
+            // Kiểm tra sách có tồn tại không
+            Sach sach = dssach.timKiemTheoMa(masach);
+            if (sach == null) {
+                System.out.println("Ma sach khong ton tai. Vui long nhap lai.");
+                i--;
+                continue;
+            }
+            
+            System.out.print("Nhap so luong: ");
+            int soluong = sc.nextInt();
+            sc.nextLine();
+            
+            // Kiểm tra số lượng tồn kho
+            if (sach.getSoLuong() < soluong) {
+                System.out.println("Khong du so luong. Ton kho chi con: " + sach.getSoLuong());
+                i--;
+                continue;
+            }
+            
+            // Lấy đơn giá từ sách
+            double dongia = sach.getDonGia();
+            double thanhtien = soluong * dongia;
+            
+            // Tạo chi tiết hóa đơn
+            ChiTietHoaDon ct = new ChiTietHoaDon(mahd, masach, soluong, dongia, thanhtien);
             tongTien += thanhtien;
-            
             dscthd.themChiTietHoaDon(ct, false);
+            
+            // Trừ số lượng sách trong kho
+            int slMoi = sach.getSoLuong() - soluong;
+            if (slMoi == 0) {
+                // Xóa sách nếu hết hàng
+                dssach.xoaSach(masach);
+                System.out.println("Sach " + masach + " da het hang va bi xoa khoi kho.");
+            } else {
+                // Cập nhật số lượng mới
+                sach.setSoLuong(slMoi);
+                dssach.tuDongCapNhatFile();
+            }
         }
         dscthd.tuDongCapNhatFile();
         
@@ -317,7 +351,6 @@ public class DanhSachHoaDon {
                 tongThu[vitri] = dshd[i].getTongTien();
             } catch (Exception e) {}
         }
-
         
 
             
@@ -336,29 +369,26 @@ public class DanhSachHoaDon {
     public void thongKeChiTieuTheoKhachHangVaNam() {
 
         // Tìm năm min và max
-        int namMax= 0, namMin = 9999;
+        int namMax = 0, namMin = 9999;
 
-        for(int i= 0; i < n; i++) {
+        for (int i = 0;  i < n; i++) {
             try {
                 LocalDate ngay = LocalDate.parse(dshd[i].getNgayLap());
                 int nam = ngay.getYear();
-                if(nam < namMin) namMin = nam;
-                if(nam > namMax) namMax = nam;
+                if (nam < namMin) namMin = nam;
+                if (nam > namMax) namMax = nam;
             }catch (Exception e) {}
-        }
+        }        
 
         int soNam = namMax - namMin +1;
-        String[] maKH = new String [100];
+        String[] maKH = new String[100];
         int soKH = 0;
-        
-
-        // Lấy danh sách mã khách hàng duy nhất
         for (int i = 0; i < n; i++) {
-            boolean tontai = false;
             String ma = dshd[i].getMaKH();
+            boolean tontai = false;
             for (int j = 0; j < soKH; j++) {
                 if (maKH[j].equals(ma)) {
-                    tontai = true;
+                    tontai  = true;
                     break;
                 }
             }
@@ -367,42 +397,33 @@ public class DanhSachHoaDon {
             }
         }
 
-        
-
-        // Tạo mảng 2 chiều lưu tổng tiền [khách hàng][năm]
-        double tongTien[][] = new double[soKH][soNam];
-        for (int i = 0; i < soKH; i++) {
+        double[][] tongTien = new double[soKH][soNam];
+        for(int i = 0; i < soKH; i++) {
             for (int j = 0; j < soNam; j++) {
-                tongTien[i][j] = 0.0;
+                tongTien[i][j] =0.0;
             }
         }
-        
 
-        // Tính tổng tiền cho từng khách hàng theo năm
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i <n; i++) {
+            int vitri = -1;
             String ma = dshd[i].getMaKH();
-            int viTriKH = -1;
             for (int j = 0; j < soKH; j++) {
                 if (maKH[j].equals(ma)) {
-                    viTriKH = j;
+                    vitri = j;
                     break;
                 }
             }
 
-        
             try {
-                LocalDate ngaylap = LocalDate.parse(dshd[i].getNgayLap());
-                int nam = ngaylap.getYear();
-                int viTriNam = nam - namMin;
-                tongTien[viTriKH][viTriNam] += dshd[i].getTongTien();
-            } catch (Exception e) {
-            }
+                LocalDate ngay = LocalDate.parse(dshd[i].getNgayLap());
+                int nam = ngay.getYear();
+                int vitriNam = nam - namMin;
+                tongTien[vitri][vitriNam] += dshd[i].getTongTien();
+            }catch (Exception e) {}
         }
-
         
         
         
-
         
 
         // In tiêu đề
@@ -436,7 +457,7 @@ public class DanhSachHoaDon {
     public void thongKeHieuSuatNhanVien() {
 
         // Lấy danh sách mã nhân viên duy nhất
-        String[] maNV = new String[100]; // Giả sử tối đa 100 nhân viên
+        String[] maNV = new String[100];
         int soNV = 0;
 
         for (int i = 0; i < n; i++) {

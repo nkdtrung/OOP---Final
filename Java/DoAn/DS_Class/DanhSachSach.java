@@ -17,6 +17,7 @@ public class DanhSachSach {
 
     //Hàm thiết lập:
     public DanhSachSach() {
+        ds = new Sach[0];
         n = 0;
     }
     public DanhSachSach(Sach[] ds, int n) {
@@ -141,7 +142,6 @@ public class DanhSachSach {
         }
         n = ds.length;
         ds = Arrays.copyOf(ds, n + 1);
-        // Giữ nguyên kiểu của đối tượng (SachNuocNgoai hoặc TapChi)
         if (sach instanceof SachNuocNgoai) {
             ds[n] = new SachNuocNgoai((SachNuocNgoai)sach);
         } else if (sach instanceof TapChi) {
@@ -160,6 +160,27 @@ public class DanhSachSach {
             }
         }
         return null;
+    }
+
+    public DanhSachSach timTacGia (String tg) {
+        DanhSachSach kq = new DanhSachSach();
+        for (int i = 0; i < n; i++) {
+            if (ds[i].getMaTG().equals(tg)) {
+                kq.ds = Arrays.copyOf(kq.ds, kq.n+1);
+
+                if (ds[i] instanceof SachNuocNgoai) {
+                    kq.ds[kq.n] = new SachNuocNgoai((SachNuocNgoai)ds[i]);
+
+                } else if (ds[i] instanceof TapChi) {
+                    kq.ds[kq.n] = new TapChi((TapChi)ds[i]);
+                    
+                } else {
+                    kq.ds[kq.n] = new SachThuong((SachThuong)ds[i]);
+                }
+                kq.n++;
+            }
+        }
+        return kq;
     }
 
     //Xóa:

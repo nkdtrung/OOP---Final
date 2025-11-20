@@ -19,8 +19,9 @@ public class DanhSachNV {
 
     // Hàm thiết lập:
     public DanhSachNV() {
-        n = 0;
-    }
+    dsnv = new NhanVien[0];
+    n = 0;
+}
     public DanhSachNV(NhanVien[] dsnv, int n) {
         this.n = n;
         this.dsnv = dsnv;
@@ -80,8 +81,6 @@ public class DanhSachNV {
 
     public DanhSachNV timKiemTheoHo(String ho) {
         DanhSachNV ketQua = new DanhSachNV();
-        ketQua.dsnv = new NhanVien[0];
-        ketQua.n = 0;
         for (int i = 0; i < n; i++) {
             if (dsnv[i].getHo().toLowerCase().contains(ho.toLowerCase())) {
                 ketQua.dsnv = Arrays.copyOf(ketQua.dsnv, ketQua.n + 1);
@@ -93,8 +92,6 @@ public class DanhSachNV {
     }
     public DanhSachNV timKiemTheoTen(String ten) {
         DanhSachNV ketQua = new DanhSachNV();
-        ketQua.dsnv = new NhanVien[0];
-        ketQua.n = 0;
         for (int i = 0; i < n; i++) {
             if (dsnv[i].getTen().toLowerCase().contains(ten.toLowerCase())) {
                 ketQua.dsnv = Arrays.copyOf(ketQua.dsnv, ketQua.n + 1);
@@ -201,17 +198,17 @@ public class DanhSachNV {
     //Thống kê:
     public int[] thongKeGioiTinh() {
         int nam = 0, nu = 0;
-        for (int i = 0; i < n; i++) {
-            if (dsnv[i].getGioiTinh().equals("nam") || dsnv[i].getGioiTinh().equals( "Nam")) {
+        for (int i= 0; i < n; i++){
+            if (dsnv[i].getGioiTinh().equals("Nam")) {
                 nam++;
+            }else {
+                nu++;
             }
-            else nu++;
         }
-        System.out.println("Nam: " + nam);
-        System.out.println("Nu: " + nu);
-        return new int[]{nam, nu};
+        return new int[] {nam, nu};
     }
 
+    
     //Đọc file:
     public void docFile(String filePath) {
         dsnv = new NhanVien[0];

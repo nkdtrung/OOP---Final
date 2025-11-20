@@ -85,22 +85,20 @@ public class DanhSachNCC {
 
     //xóa
     public void xoaNCC(String maNCC) {
-        int index = -1;
+        boolean found = false;
         for (int i = 0; i < n; i++) {
             if (dsNCC[i].getMaNCC().equals(maNCC)) {
-                index = i;
+                for (int j = i; j < n - 1; j++) {
+                    dsNCC[j] = dsNCC[j + 1];
+                }
+                dsNCC[n - 1] = null;
+                n--;
+                found = true;
+                tuDongCapNhatFile();
                 break;
             }
         }
-        if (index != -1) {
-            for (int i = index; i < n - 1; i++) {
-                dsNCC[i] = dsNCC[i + 1];
-            }
-            dsNCC[n - 1] = null;
-            n--;
-            System.out.println("Da xoa nha cung cap voi ma: " + maNCC);
-            tuDongCapNhatFile();
-        } else {
+        if (!found) {
             System.out.println("Khong tim thay nha cung cap voi ma: " + maNCC);
         }
     }

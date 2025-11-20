@@ -1,7 +1,9 @@
 package Java.DoAn.DS_Class;
 
 import Java.DoAn.Class_chinh.CTPhieuNhapHang;
+import Java.DoAn.Class_chinh.NhaCungCap;
 import Java.DoAn.Class_chinh.PhieuNhapHang;
+import Java.DoAn.Class_chinh.Sach;
 
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -61,10 +63,16 @@ public class DanhSachPNH {
                 pnh.setTongTien(pnh.getTongTien() + thanhtien);
             }
         }
+        tuDongCapNhatFile();
     }
 
     public PhieuNhapHang themPNH() {
         Scanner sc = new Scanner(System.in);
+        DanhSachCTPNH dsctpnh = new DanhSachCTPNH();
+        dsctpnh.docFile("Java/DoAn/input/inputChiTietPNH.txt");
+        DanhSachSach dssach = new DanhSachSach();
+        dssach.docFile("Java/DoAn/input/inputSach.txt");
+        
         String mapnh;
         do {
             System.out.print("Nhap ma phieu nhap hang: ");
@@ -80,8 +88,65 @@ public class DanhSachPNH {
         dsPNH[n].setMaPNH(mapnh);
         System.out.println("Ma PNH: " + mapnh);
         dsPNH[n].nhap();
+        
+        // Nhập chi tiết phiếu nhập hàng
+        System.out.print("Nhap so luong chi tiet phieu nhap hang: ");
+        int soLuongCT = sc.nextInt();
+        sc.nextLine();
+        
+        double tongTien = 0.0;
+        for (int i = 0; i < soLuongCT; i++) {
+            System.out.println("\n--- Chi tiet phieu nhap hang thu " + (i+1) + " ---");
+            System.out.print("Nhap ma sach: ");
+            String masach = sc.nextLine();
+            
+            System.out.print("Nhap so luong: ");
+            int soluong = sc.nextInt();
+            System.out.print("Nhap don gia nhap: ");
+            double dongia = sc.nextDouble();
+            sc.nextLine();
+            
+            double thanhtien = soluong * dongia;
+            
+            // Tạo chi tiết phiếu nhập hàng
+            CTPhieuNhapHang ct = new CTPhieuNhapHang(mapnh, masach, soluong, dongia, thanhtien);
+            tongTien += thanhtien;
+            dsctpnh.themChiTietPNH(ct, false);
+            
+            // Cập nhật số lượng sách trong kho
+            Sach sach = dssach.timKiemTheoMa(masach);
+            if (sach != null) {
+                // Nếu sách đã tồn tại, cộng thêm số lượng
+                int slMoi = sach.getSoLuong() + soluong;
+                sach.setSoLuong(slMoi);
+                System.out.println("Da cap nhat so luong sach " + masach + " thanh: " + slMoi);
+            } else {
+                // Nếu sách chưa tồn tại, cần tạo mới
+                System.out.println("\nSach chua ton tai trong kho. Vui long nhap thong tin sach moi:");
+                System.out.print("Nhap ten sach: ");
+                String tensach = sc.nextLine();
+                System.out.print("Nhap ma tac gia: ");
+                String matg = sc.nextLine();
+                System.out.print("Nhap ma the loai: ");
+                String matl = sc.nextLine();
+                System.out.print("Nhap ma nha xuat ban: ");
+                String manxb = sc.nextLine();
+                
+                // Tạo sách mới (mặc định là SachThuong)
+                Sach sachMoi = new Java.DoAn.Class_chinh.SachThuong(masach, tensach, matg, matl, manxb, soluong, dongia);
+                dssach.themSach(sachMoi);
+                System.out.println("Da them sach moi vao kho.");
+            }
+            dssach.tuDongCapNhatFile();
+        }
+        dsctpnh.tuDongCapNhatFile();
+        
+        dsPNH[n].setTongTien(tongTien);
         n++;
         tuDongCapNhatFile();
+        
+        System.out.println("\nDa them phieu nhap hang thanh cong!");
+        System.out.println("Tong tien phieu nhap hang: " + String.format("%.2f", tongTien) + " VND");
         return dsPNH[n - 1];
     }
 
@@ -457,4 +522,5 @@ public class DanhSachPNH {
 
         System.out.println("====================================================================================================\n");
     }
+
 }

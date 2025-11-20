@@ -6,5 +6,4 @@ S011,An toan thong tin,Nguyen Thi E,TL07,NXB09,13,87000.0
 S012,Co so du lieu,Tran Van F,TL08,NXB02,22,91000.0
 S013,Tri tue nhan tao nang cao,Do Van G,TL09,NXB03,11,97000.0
 S014,Tin hoc dai cuong,Le Thi H,TL10,NXB01,25,75000.0
-S099,ABCDE,Trung,TL99,NXB99,99,999999.0
-Tong: 9
+Tong: 8
